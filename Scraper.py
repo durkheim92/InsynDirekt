@@ -5,7 +5,7 @@ import os
 
 def get_data():
     # Vi använder den säkraste versionen av URL:en
-    url = "https://marknadssok.fi.se/Publicerat/Insyn/Sok/Register.csv"
+    url = "https://marknadssok.fi.se/publicerat/insyn/sok/register.csv"
     
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
