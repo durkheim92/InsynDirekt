@@ -1,0 +1,33 @@
+name: Daily Data Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Körs varje natt
+  workflow_dispatch: # Gör att du kan starta den manuellt
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install pandas requests
+
+      - name: Run scraper
+        run: python Scraper.py
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          mkdir -p data
+          git add data/insyn_current.csv || echo "Ingen fil att lägga till"
+          git commit -m "Update data" || exit 0
+          git push
