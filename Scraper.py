@@ -4,7 +4,7 @@ import io
 import os
 
 def download_fi_data():
-    url = "https://marknadssök.fi.se/Publicerat/Insyn/Sök/Register.csv"
+    url = "https://marknadssok.fi.se/Publicerat/Insyn/Sok/Register.csv"
     headers = {'User-Agent': 'Mozilla/5.0'}
     
     try:
