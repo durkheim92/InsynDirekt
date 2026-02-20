@@ -8,12 +8,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # HÄR ÄR FIXEN: Vi ger roboten skrivrättigheter direkt i koden
+    permissions:
+      contents: write
+      
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3 # Uppdaterad till version 3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4 # Uppdaterad till version 4
         with:
           python-version: '3.9'
 
@@ -26,7 +30,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.name "github-actions[bot]"
           git add insyn_data.csv
-          git commit -m "Update data" || exit 0
+          git commit -m "Update data" || echo "No changes to commit"
           git push
